@@ -1,11 +1,11 @@
 import React from 'react';
 
-const ResetPassword: React.FC = () => {
+const Profile: React.FC = () => {
 	return (
 		<>
-			<h1>ResetPassword</h1>
+			<h1>Profile</h1>
 		</>
 	);
 };
 
-export default ResetPassword;
+export default Profile;
