@@ -1,0 +1,16 @@
+export { default as Challenges } from './views/Challenges/Challenges';
+export { default as Challenge } from './views/Challenge/Challenge';
+export { default as NotFound } from './views/NotFound/NotFound';
+export { default as ResetPassword } from './views/ResetPassword/ResetPassword';
+export { default as Home } from './views/Home/Home';
+export { default as Login } from './views/Login/Login';
+export { default as Signup } from './views/Signup/Signup';
+export { default as Profile } from './views/Profile/Profile';
+export { default as Settings } from './views/Settings/Settings';
+export { default as Dashboard } from './views/Dashboard/Dashboard';
+export { default as Goals } from './views/Goals/Goals';
+export { default as Goal } from './views/Goal/Goal';
+export { default as Tracker } from './views/Tracker/Tracker';
+export { default as Friends } from './views/Friends/Friends';
+export { default as Feed } from './views/Feed/Feed';
+export { default as Notifications } from './views/Notifications/Notifications';
