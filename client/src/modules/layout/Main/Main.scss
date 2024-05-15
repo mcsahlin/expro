@@ -1,0 +1,18 @@
+#main {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 100%;
+	padding-top: 56px;
+	padding-bottom: 56px;
+	background-color: #f8f9fa;
+	overflow-x: hidden;
+}
+
+#main > .container {
+	flex: 1;
+}
+
+#main > .container > .row {
+	flex: 1;
+}

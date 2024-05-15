@@ -1,0 +1,10 @@
+// Buttons
+// --------------------------------------------------
+@mixin button(
+	$type: primary($color-primary) secondary($color-secondary)
+		success($color-success)
+) {
+	border: none;
+	background-color: $type;
+	cursor: pointer;
+}
