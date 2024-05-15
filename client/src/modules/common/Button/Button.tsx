@@ -2,24 +2,27 @@ import React from 'react';
 import './Button.scss';
 
 export interface ButtonProps {
+	name?: string;
 	cName: string;
 	type?: 'button' | 'submit' | 'reset';
+	value?: string;
 	onClick?: () => void;
-	children?: React.ReactNode;
 }
 
 const Button: React.FC<ButtonProps> = ({
+	name = '',
 	cName = '',
 	type = 'button',
+	value = '',
 	onClick,
-	children,
 }) => (
 	<button
-		type={type}
+		name={name}
 		className={'btn' + cName}
+		type={type}
 		onClick={onClick}
 	>
-		{children}
+		{value}
 	</button>
 );
 
