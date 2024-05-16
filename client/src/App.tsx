@@ -5,6 +5,11 @@ import { Footer, Main, Navbar } from './modules/layout';
 const App: React.FC = () => {
 	return (
 		<>
+			{/**
+			 * Header and Navbar components are separated to aid in accessibility.
+			 * (Screen readers can navigate to the header and skip the navbar if needed.)
+			 *
+			 */}
 			<header></header>
 			<Navbar />
 			<Main>
