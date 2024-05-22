@@ -22,7 +22,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 		_id: '',
 		// email: '',
 		password: '',
-		uid: '',
+		username: '',
 		// role: '',
 		// createdAt: new Date(),
 		// updatedAt: new Date(),

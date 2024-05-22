@@ -1,0 +1,91 @@
+.navbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: #f8f9fa;
+	border-bottom: 1px solid #e9ecef;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+
+	&__logo {
+		color: black;
+		background-size: contain;
+		width: 100%;
+		font-weight: 700;
+		font-family: 'Montserrat', sans-serif;
+		&-container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border: 1px solid red;
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+
+	&__menu {
+		list-style-type: none;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		&-item {
+			margin: 0 1rem;
+			&:hover {
+				cursor: pointer;
+			}
+		}
+
+		&-item--active {
+			color: #007bff;
+		}
+
+		&-link {
+			color: black;
+			text-decoration: none;
+		}
+	}
+}
+
+.hamburger {
+	cursor: pointer;
+}
+
+.hamburger input {
+	display: none;
+}
+
+.hamburger svg {
+	/* The size of the SVG defines the overall size */
+	height: 3em;
+	/* Define the transition for transforming the SVG */
+	transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line {
+	fill: none;
+	stroke: rgb(23, 23, 23);
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-width: 3;
+	/* Define the transition for transforming the Stroke */
+	transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+		stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line-top-bottom {
+	stroke-dasharray: 12 63;
+}
+
+.hamburger input:checked + svg {
+	transform: rotate(-45deg);
+}
+
+.hamburger input:checked + svg .line-top-bottom {
+	stroke-dasharray: 20 300;
+	stroke-dashoffset: -32.42;
+}

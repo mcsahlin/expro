@@ -1,21 +1,21 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
-import { Profile } from './modules';
-import { NotFound } from './modules';
-import { Home } from './modules';
-import { Login } from './modules';
-import { Signup } from './modules';
-import { ResetPassword } from './modules';
-import { Dashboard } from './modules';
-import { Goals } from './modules';
-import { Goal } from './modules';
-import { Challenges } from './modules';
-import { Challenge } from './modules';
-import { Friends } from './modules';
-import { Tracker } from './modules';
-import { Settings } from './modules';
-import { Feed } from './modules';
-import { Notifications } from './modules';
+import Home from './views/Home';
+import Profile from './views/Profile';
+import Settings from './views/Settings';
+import Login from './views/Login';
+import Signup from './views/Signup';
+import ResetPassword from './views/ResetPassword';
+import Dashboard from './views/Dashboard';
+import Goals from './views/Goals';
+import Goal from './views/Goal';
+import Challenges from './views/Challenges';
+import Challenge from './views/Challenge';
+import Friends from './views/Friends';
+import Tracker from './views/Tracker';
+import Feed from './views/Feed';
+import Notifications from './views/Notifications';
+import NotFound from './views/NotFound';
 
 export const router = createBrowserRouter([
 	{

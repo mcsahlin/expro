@@ -12,7 +12,7 @@ body {
 	font-family: 'Montserrat', sans-serif;
 	font-size: 16px;
 	line-height: 1.5;
-	position: relative;
+	// position: relative;
 }
 
 // Links
@@ -26,40 +26,4 @@ a {
 // --------------------------------------------------
 ul {
 	list-style-type: none;
-}
-
-// Buttons
-// --------------------------------------------------
-button {
-	border: none;
-	background-color: transparent;
-	cursor: pointer;
-}
-
-// Inputs
-// --------------------------------------------------
-input {
-	border: none;
-}
-
-// Containers
-// --------------------------------------------------
-.container {
-	width: 100%;
-	margin: 0 auto;
-	padding: 0 1rem;
-}
-
-// Flex
-// --------------------------------------------------
-.flex {
-	display: flex;
-}
-
-// Flex Center
-// --------------------------------------------------
-.flex-center {
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }

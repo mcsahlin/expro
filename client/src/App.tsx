@@ -1,22 +1,16 @@
 import { Outlet } from 'react-router'; // Import the Outlet component from the react-router package
-import './App.css';
-import { Footer, Main, Navbar } from './modules/layout';
+import Header from './base/Header/Header';
+import Footer from './base/Footer';
+import './scss/main.scss'; // Import the main.scss file from the scss folder
+import { UserProvider } from './contexts/userContext';
 
 const App: React.FC = () => {
 	return (
-		<>
-			{/**
-			 * Header and Navbar components are separated to aid in accessibility.
-			 * (Screen readers can navigate to the header and skip the navbar if needed.)
-			 *
-			 */}
-			<header></header>
-			<Navbar />
-			<Main>
-				<Outlet />
-			</Main>
+		<UserProvider>
+			<Header />
+			<Outlet />
 			<Footer />
-		</>
+		</UserProvider>
 	);
 };
 
