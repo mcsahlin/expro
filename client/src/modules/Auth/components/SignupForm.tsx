@@ -12,7 +12,7 @@ const SignupForm: React.FC<Props> = ({ props }) => {
 		<BaseForm
 			method='POST'
 			cls='signup'
-			onSubmit={props.handleSubmit}
+			id='signup-form'
 		>
 			<h2 className='signup__title'>Sign Up</h2>
 			<Input

@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Navbar from '../Navbar';
 import './Header.scss';
+import { UserContext } from '../../contexts/userContext';
+import App from '../../App';
 
 const Header: React.FC = () => {
+	const [loading, setLoading] = useState(true);
+	const [online, setOnline] = useState(false);
+
+	const user = useContext(UserContext).user;
+
+	useEffect(() => {
+		if (!loading) return;
+
+		if (user) {
+			setOnline(true);
+			console.log(`User is online`);
+		}
+
+		setLoading(false);
+	}, []);
+
 	return (
 		<>
 			{/**
@@ -11,6 +29,15 @@ const Header: React.FC = () => {
 			 *
 			 */}
 			<header></header>
+			{online && (
+				<div>
+					<nav
+						id='main-navigation'
+						className='navbar navbar--app'
+						aria-label='Main Navigation'
+					></nav>
+				</div>
+			)}
 			<Navbar />
 		</>
 	);

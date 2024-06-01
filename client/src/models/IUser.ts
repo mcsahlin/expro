@@ -3,6 +3,7 @@ export interface IUser {
 	// email: string;
 	password: string;
 	username: string;
+	// auth: boolean;
 	// role: string;
 	// createdAt: Date;
 	// updatedAt: Date;

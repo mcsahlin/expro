@@ -27,6 +27,26 @@ const Signup: React.FC = () => {
 			});
 	};
 
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { name, value } = e.target;
+		switch (name) {
+			case 'email':
+				setEmail(value);
+				break;
+			case 'username':
+				setUsername(value);
+				break;
+			case 'password':
+				setPassword(value);
+				break;
+			case 'confirmPassword':
+				setConfirmPassword(value);
+				break;
+			default:
+				break;
+		}
+	};
+
 	return (
 		<Main>
 			<SignupForm

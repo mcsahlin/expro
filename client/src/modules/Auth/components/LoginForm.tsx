@@ -2,16 +2,22 @@ import React from 'react';
 import BaseForm from '../../../base/BaseForm';
 import Button from '../../../base/Button';
 import Input from '../../../base/Input';
-
 interface Props {
 	props: any;
 }
 
 const LoginForm: React.FC<Props> = ({ props }) => {
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		console.log('Login form submitted');
+	};
+
 	return (
 		<BaseForm
 			method='POST'
 			cls='login'
+			id='login-form'
+			onSubmit={() => handleSubmit}
 		>
 			<Input
 				name='username'

@@ -3,19 +3,19 @@ import { Form } from 'react-router-dom';
 import './BaseForm.scss';
 
 interface Props {
-	cls: string;
-	method: any;
-	children: any;
-	onSubmit?: () => any;
+	id: string;
+	method: 'get' | 'post' | 'put';
+	action: string;
+	children: React.ReactNode;
 }
 
-const BaseForm: React.FC<Props> = ({ children, onSubmit, cls, method }) => {
+const BaseForm: React.FC<Props> = ({ children, id, action, method }) => {
 	return (
 		<Form
 			method={method}
-			id='form'
-			className={'form ' + `form--${cls}`}
-			{...(onSubmit && { onSubmit })}
+			action={action}
+			id={id}
+			className={'form ' + `form--${id}`}
 		>
 			{children}
 		</Form>
