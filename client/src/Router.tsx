@@ -1,23 +1,21 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
-import {
-	Profile,
-	Settings,
-	Login,
-	Signup,
-	ResetPassword,
-	Dashboard,
-	Goals,
-	Goal,
-	Challenges,
-	Challenge,
-	Friends,
-	Tracker,
-	Feed,
-	Notifications,
-	Home,
-	NotFound,
-} from './views';
+import { Profile } from './modules';
+import { NotFound } from './modules';
+import { Home } from './modules';
+import { Login } from './modules';
+import { Signup } from './modules';
+import { ResetPassword } from './modules';
+import { Dashboard } from './modules';
+import { Goals } from './modules';
+import { Goal } from './modules';
+import { Challenges } from './modules';
+import { Challenge } from './modules';
+import { Friends } from './modules';
+import { Tracker } from './modules';
+import { Settings } from './modules';
+import { Feed } from './modules';
+import { Notifications } from './modules';
 
 export const router = createBrowserRouter([
 	{
@@ -53,10 +51,6 @@ export const router = createBrowserRouter([
 
 			{
 				path: '/dashboard/:id',
-				element: <Dashboard />,
-			},
-			{
-				path: '/dashboard',
 				element: <Dashboard />,
 			},
 			{
