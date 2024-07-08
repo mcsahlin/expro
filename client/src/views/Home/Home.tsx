@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.scss';
-import { Button } from '../../common';
+import { Button } from '../../core/design-system';
 
 const Home: React.FC = () => {
 	return (
@@ -20,8 +20,9 @@ const Home: React.FC = () => {
 				<p className='hero__subtitle'>Your one stop for traction in life</p>
 			</div>
 			<Button
+				id={'hero-cta-btn'}
 				name={'hero-cta'}
-				cName='btn--primary'
+				cl='btn--primary'
 				onClick={() => console.log('CTA clicked')}
 				value={'Get Started'}
 			/>
