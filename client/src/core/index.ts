@@ -1,4 +1,4 @@
-export { default as Button } from '../core/design-system/Button/Button';
+export { default as Button } from './design-system/Button/Button';
 export { default as Container } from './design-system/Container/Container';
 export { default as Main } from './components/Main/Main';
 export { default as Navbar } from './components/Navbar/Navbar';

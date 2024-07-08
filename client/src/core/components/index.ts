@@ -1,3 +1,3 @@
-export { default as Footer } from '../components/Footer/Footer';
-export { default as Main } from '../components/Main/Main';
-export { default as Navbar } from '../components/Navbar/Navbar';
+export { default as Footer } from './Footer/Footer';
+export { default as Main } from './Main/Main';
+export { default as Navbar } from './Navbar/Navbar';

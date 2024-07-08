@@ -1,6 +1,5 @@
-import express from 'express';
-import dotenv from 'dotenv';
-dotenv.config();
+const express = require('express');
+require('dotenv').config();
 
 const port = process.env.PORT || 5000;
 const app = express();
@@ -48,7 +47,7 @@ app.get('/targets/user/:id/:tid', (req, res, next) => {
 
 app.post('/targets/user/:id', (req, res, next) => {
 	res.send('Target Page');
-
+				
 	const { title, description, date } = req.body;
 
 	if (
@@ -56,7 +55,7 @@ app.post('/targets/user/:id', (req, res, next) => {
 		title.trim().length === 0 ||
 		!description ||
 		description.trim().length === 0 ||
-		!date ||
+		!date ||	
 		date.trim().length === 0
 	) {
 		return res.status(400).json({
