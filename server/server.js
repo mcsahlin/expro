@@ -4,6 +4,8 @@ const cors = require('cors');
 const usersRoutes = require('./routes/usersRoutes');
 const targetsRoutes = require('./routes/targetsRoutes');
 const challengesRoutes = require('./routes/challengesRoutes');
+const MONGODB_URI = require('./config/db');
+const { config } = require('dotenv');
 require('dotenv').config();
 
 const app = express();
@@ -28,7 +30,7 @@ app.use('/api/challenges', challengesRoutes);
 const PORT = process.env.PORT || 5000;
 	
 mongoose
-	.connect(process.env.MONGO_URI)
+	.connect(MONGODB_URI)
 	.then(() => {
 		app.listen(PORT, () => {
 			console.log(`API live on port ${PORT}`);
