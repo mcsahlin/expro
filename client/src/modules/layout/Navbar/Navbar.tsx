@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
 				</li>
 
 				<li className='navbar__item'>
-					{' '}
+					
 					<Link
 						to='/about'
 						className='navbar__link'
@@ -35,25 +35,22 @@ const Navbar: React.FC = () => {
 					</Link>
 				</li>
 				<li className='navbar__item'>
-					{' '}
+					
 					<Link to='/signup'>
-						<Button
-							name='signup'
-							cName='btn btn--secondary'
-							onClick={() => console.log('Signup clicked')}
-							value='Signup'
-						/>
+						<li className='navbar__item'>
+							Signup
+						</li>
 					</Link>
 				</li>
 
 				<li className='navbar__item'>
-					{' '}
-					<Button
-						name='login'
-						cName='btn btn--primary'
-						onClick={() => console.log('Login clicked')}
-						value={'Login'}
-					/>
+			
+					<Link to='/login'>
+						<li className='navbar__item'>
+							Login
+						</li>
+					</Link>
+				
 				</li>
 			</ul>
 		</nav>

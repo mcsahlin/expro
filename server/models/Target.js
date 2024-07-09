@@ -16,3 +16,4 @@ const targetSchema = new mongoose.Schema({ //Creating a schema
 });
 
 module.exports = mongoose.model('Target', targetSchema); //Exporting the model
+
