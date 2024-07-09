@@ -1,7 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const userRoutes = require('./routes/userRoutes');
+const usersRoutes = require('./routes/usersRoutes');
+const targetsRoutes = require('./routes/targetsRoutes');
+const challengesRoutes = require('./routes/challengesRoutes');
 require('dotenv').config();
 
 const app = express();
@@ -19,7 +21,9 @@ app.use(cors({
 
 
 
-app.use('/api/users', userRoutes);
+app.use('/api/users', usersRoutes);
+app.use('/api/targets', targetsRoutes);
+app.use('/api/challenges', challengesRoutes);
 
 const PORT = process.env.PORT || 5000;
 	
