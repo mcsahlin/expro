@@ -1,18 +1,19 @@
+
 #main {
 	display: flex;
 	flex-direction: column;
-	height: 100%;
 	width: 100%;
-	padding-top: 56px;
-	padding-bottom: 56px;
+	padding-top: 60px;
+	padding-bottom: 60px;
 	background-color: #f8f9fa;
-	overflow-x: hidden;
+	// overflow-x: hidden;
 }
 
-#main > .container {
-	flex: 1;
-}
-
-#main > .container > .row {
-	flex: 1;
+.main__content 
+{
+	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }

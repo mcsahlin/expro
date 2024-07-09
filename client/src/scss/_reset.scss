@@ -1,17 +1,24 @@
+
 // Reset
 // --------------------------------------------------
-* {
+*  {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-size: 1rem;
+}
+
+html {
+	width: 100vw;
 }
 
 // Typography
 // --------------------------------------------------
 body {
 	font-family: 'Montserrat', sans-serif;
-	font-size: 16px;
+	font-size: 1rem;
 	line-height: 1.5;
+	width: inherit;
 	position: relative;
 }
 
@@ -34,6 +41,7 @@ button {
 	border: none;
 	background-color: transparent;
 	cursor: pointer;
+	font-size: 1rem;
 }
 
 // Inputs

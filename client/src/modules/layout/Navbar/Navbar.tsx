@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '../../common';
 import './Navbar.scss';
 
 const Navbar: React.FC = () => {
 	return (
+		<>
+			<header></header>
+
 		<nav
 			id='navbar'
 			className='navbar'
@@ -54,6 +56,7 @@ const Navbar: React.FC = () => {
 				</li>
 			</ul>
 		</nav>
+	</>
 	);
 };
 

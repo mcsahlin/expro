@@ -1,15 +1,18 @@
 .footer {
 	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+
 	left: 0;
 	bottom: 0;
 	width: 100%;
 	background-color: rgb(11, 38, 48);
-	padding: 20px 0;
+	height: 60px;
 	text-align: center;
-	font-size: 14px;
 	color: #6c757d;
 	border-top: 1px solid #e9ecef;
-	margin-top: 20px;
 
 	a {
 		color: #6c757d;
