@@ -49,9 +49,11 @@ const Signup: React.FC = () => {
 			});
 
 			// Save token to local storage
-			res && localStorage.setItem('token', res.data.token);
-
-			console.log('Signup successful');
+			try {
+				localStorage.setItem('token', res.data.token);
+			} catch (err) {
+				console.error('Error saving token to local storage', err);
+			}
 		}
 	};
 
