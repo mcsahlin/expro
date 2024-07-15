@@ -2,6 +2,7 @@ import React, {  useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Login.scss';
 import { Main } from '../../layout';
+import authService from '../../../ts/services/authService';
 
 const Login: React.FC = () => {
 	const [email, setEmail] = useState('');
@@ -13,15 +14,21 @@ const Login: React.FC = () => {
 		if (name === 'password') setPassword(value);
 	}
 
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault();
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const { token, user } = await authService.login(email, password);
+      authService.saveToken(token);
+      console.log('Login successful', user);
+    } catch (err) {
+      console.error('Login failed', err);
+    }
+  };
+		
+	
 
-		const response = fetch('http://localhost:8000/api/users', {})
-		const form = document.getElementById('loginForm') as HTMLFormElement;
-		const formData = new FormData(form);
-		const data = Object.fromEntries(formData);
-		console.log(data);
-	}
+		
+	
 	return (
 		<Main cls='login'>
 			<form onSubmit={handleSubmit} className="form" id="loginForm" >

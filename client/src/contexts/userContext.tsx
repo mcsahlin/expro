@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import { IUser } from '../models/IUser.ts';
+import { IUser } from '../ts/models/IUser.ts';
 
 /* Interface */
 export interface IUserContext {
@@ -20,12 +20,12 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 	/* Default User Object */
 	const defaultUser: IUser = {
 		_id: '',
-		// email: '',
+		email: '',
 		password: '',
 		uid: '',
-		// role: '',
-		// createdAt: new Date(),
-		// updatedAt: new Date(),
+		role: '',
+		createdAt: new Date,
+		updatedAt: new Date,
 	};
 	const [user, setUser] = React.useState<IUser | null>(defaultUser);
 

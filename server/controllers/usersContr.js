@@ -1,14 +1,14 @@
 const User = require('../models/User');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
+const utilize = require('../utils/authUtility');
+const service = require('../services/userService');
 
-
+//::: GET ALL USERS ::: GET /api/users
 exports.getUsers = async (req, res, next) => {
   try {
     const users = await User.find();
     res.status(200).json({
-      message: 'Users fetched successfully',
+      User_count: users.length,
       users,
     });
   } catch (err) {
@@ -16,107 +16,34 @@ exports.getUsers = async (req, res, next) => {
       message: 'An error occured while fetching users',
     });
   }
+  await mongoose.connection.close();
 };
 
-
-exports.signupUser = async (req, res, next) => {
-  const { email, username, password } = req.body;
-
-  // Check if user exists
-  const existingUser = await User.findOne({ email: email });
-
-  if (existingUser) {
-    return res.status(400).json({
-      message: 'User already exists',
-    });
-  }
-
-  // Create new user
+//::: SIGNUP ::: POST /api/users/register
+exports.signup = async (req, res) => {
+  const data = { email, username, password } = req.body;
+  const hashedPassword = await utilize.hashPassword(password);
+  data.password = hashedPassword;
   
-  let hashedPassword;
-  try {
-    hashedPassword = await bcrypt.hash(password, 12);
-  } catch (err) {
-    return res.status(500).json({
-      message: 'An error occured while hashing password', err
-    });
-  }
 
-
-
-  const newUser = new User({
-    email,
-    username,
-    password: hashedPassword,
-  });
-    
-  try {
-    await newUser.save().then(() => {
-      res.status(201).json({
-        message: 'User created', newUser
+  service.register(data, err => {
+    if (err) {
+      return res.status(500).json({
+        message: 'Error hashing password', err
       });
-    }
-      
-    );
-  } catch (err) {
-    return res.status(500).json({
-      message: 'An error occured while creating user',
+    };
+
+
+    res.status(201).json({
+      message: 'Successfully registered user'
     });
-  }
 
-    await mongoose.connection.close();
-
-    next();
-
-  
-};
-
-exports.loginUser = async (req, res, next) => {
-  const { email, password } = req.body;
-
-  // Check if user exists
-  const user = await User.findOne({ email: email });
-  if (!user) {
-    return res.status(404).json({
-      message: 'Invalid credentials',
-    });
-  }
-
-  // Check if password is correct
-  let isMatch;
-  try {
-    isMatch = await bcrypt.compare(password, user.password);
-  } catch (err) {
-    const error = new ('An error occured while comparing passwords');
-    next(err);
-  }
-
-  if (!isMatch) {
-    return res.status(404).json({
-      message: 'Invalid credentials',
-    });
-  }
-
-  // Generate token
-  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
-  User.findOneAndUpdate({
-    email: email
-  }, {
-    token: token
-  }, {
-    new: true
-  }).then(() => {
-    res.status(200).json({
-      message: 'User logged in',
-      token
-    });
   });
+ mongoose.connection && await mongoose.connection.close();
+  next();
 };
 
-
-
-
+//::: LOGIN ::: POST /api/users/login
 exports.getUser = async (req, res, next) => {
   const { id } = req.params;
 
@@ -136,8 +63,11 @@ exports.getUser = async (req, res, next) => {
       message: 'An error occured while fetching user',
     });
   }
+  await mongoose.connection.close();
+  next();
 }
 
+//::: UPDATE USER ::: PUT /api/users/:id
 exports.updateUser = async (req, res, next) => {
   const { id } = req.params;
   const { email, username, password } = req.body;
@@ -159,11 +89,11 @@ exports.updateUser = async (req, res, next) => {
       message: 'An error occured while updating user',
     });
   }
+  await mongoose.connection.close();
+  next();
 }
 
-
-    
-
+//::: DELETE USER ::: DELETE /api/users/:id
 exports.deleteUser = async (req, res, next) => {
   const { id } = req.params;
 
@@ -184,5 +114,7 @@ exports.deleteUser = async (req, res, next) => {
       message: 'An error occured while deleting user',
     });
   }
+   await mongoose.connection.close();
+  next();
 }
 
