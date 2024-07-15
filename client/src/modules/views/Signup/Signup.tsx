@@ -62,6 +62,7 @@ const Signup: React.FC = () => {
 			<form
 				id='auth-form'
 				className='form'
+				onSubmit={handleSubmit}
 			>
 				<h1>New user</h1>
 				<div className='form__row'>
