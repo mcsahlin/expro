@@ -1,19 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '../../design-system';
 import './Navbar.scss';
-import axios from 'axios';
 
 const Navbar: React.FC = () => {
-	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-		event.preventDefault(); // Optional: Prevent default behavior
 
-		axios.get('/api/login').then((response) => {
-			console.log(response);
-		});
-
-		console.log('Button clicked! Event: ', event);
-	};
 
 	return (
 		<nav
@@ -35,9 +25,7 @@ const Navbar: React.FC = () => {
 						Home
 					</Link>
 				</li>
-
 				<li className='navbar__item'>
-					{' '}
 					<Link
 						to='/dashboard'
 						className='navbar__link'
@@ -46,27 +34,14 @@ const Navbar: React.FC = () => {
 					</Link>
 				</li>
 				<li className='navbar__item'>
-					{' '}
 					<Link to='/signup'>
-						<Button
-							id='signup-btn'
-							name='signup'
-							cl='btn btn--secondary'
-							onClick={() => console.log('Signup clicked')}
-							value='Signup'
-						/>
+						Signup
 					</Link>
 				</li>
-
 				<li className='navbar__item'>
-					{' '}
-					<Button
-						id='login-btn'
-						name='login'
-						cl='btn btn--primary'
-						onClick={handleClick}
-						value={'Login'}
-					/>
+					<Link to='/login'>
+						Login
+					</Link>
 				</li>
 			</ul>
 		</nav>

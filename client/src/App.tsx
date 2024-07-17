@@ -2,17 +2,18 @@ import React from 'react';
 import { Outlet } from 'react-router';
 import { Footer, Navbar } from './modules/layout';
 import './App.css';
+import {UserProvider} from "./contexts/userContext.tsx";
 
 const App: React.FC = () => {
 	return (
 
-		// Add HOS layout components here
 
 		<div>
 			<Navbar />
 				<Outlet />
 			<Footer />
 		</div>
+
 	);
 };
 

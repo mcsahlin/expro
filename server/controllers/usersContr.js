@@ -4,34 +4,35 @@ const utilize = require('../utils/authUtility');
 const service = require('../services/userService');
 
 //::: GET ALL USERS ::: GET /api/users
-exports.getUsers = async (req, res, next) => {
+ const getUsers = async (req, res) => {
   try {
-    const users = await User.find();
+    const users = await User.find(undefined, undefined, undefined);
     res.status(200).json({
-      User_count: users.length,
+      count: users.length,
       users,
     });
   } catch (err) {
     res.status(500).json({
-      message: 'An error occured while fetching users',
+      message: 'An error occurred while fetching users',
     });
   }
-  await mongoose.connection.close();
 };
 
 //::: SIGNUP ::: POST /api/users/register
-exports.signup = async (req, res) => {
-  const data = { email, username, password } = req.body;
-  const hashedPassword = await utilize.hashPassword(password);
-  data.password = hashedPassword;
-  
+const signup = async (req, res) => {
+  const { email, username, password } = req.body;
+  await utilize.hashPassword(password);
+  const data = { email, username, password };
 
-  service.register(data, err => {
+
+
+
+  service.register({data}, err => {
     if (err) {
       return res.status(500).json({
         message: 'Error hashing password', err
       });
-    };
+    }
 
 
     res.status(201).json({
@@ -39,12 +40,10 @@ exports.signup = async (req, res) => {
     });
 
   });
- mongoose.connection && await mongoose.connection.close();
-  next();
 };
 
 //::: LOGIN ::: POST /api/users/login
-exports.getUser = async (req, res, next) => {
+const getUser = async (req, res, next) => {
   const { id } = req.params;
 
   try {
@@ -68,7 +67,7 @@ exports.getUser = async (req, res, next) => {
 }
 
 //::: UPDATE USER ::: PUT /api/users/:id
-exports.updateUser = async (req, res, next) => {
+const updateUser = async (req, res, next) => {
   const { id } = req.params;
   const { email, username, password } = req.body;
 
@@ -94,7 +93,7 @@ exports.updateUser = async (req, res, next) => {
 }
 
 //::: DELETE USER ::: DELETE /api/users/:id
-exports.deleteUser = async (req, res, next) => {
+const deleteUser = async (req, res, next) => {
   const { id } = req.params;
 
   try {
@@ -118,3 +117,10 @@ exports.deleteUser = async (req, res, next) => {
   next();
 }
 
+module.exports = {
+    getUsers,
+    signup,
+    getUser,
+    updateUser,
+    deleteUser
+}

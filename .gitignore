@@ -13,6 +13,7 @@ server/node_modules
 dist
 dist-ssr
 *.local
+diag.drawio
 
 # Editor directories and files
 .vscode/*

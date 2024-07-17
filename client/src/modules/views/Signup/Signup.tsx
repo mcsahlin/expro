@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Signup.scss';
 import { Main } from '../../layout';
-import axios from 'axios';
-
 const Signup: React.FC = () => {
 	const [email, setEmail] = useState('');
 	const [username, setUsername] = useState('');
@@ -18,50 +16,38 @@ const Signup: React.FC = () => {
 		if (name === 'confirmPassword') setConfirmPassword(value);
 	};
 
+
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		console.log('Signup form submitted');
 
-		// Add form validation here
-		if (!email || !username || !password || !confirmPassword) {
-			console.error('All fields are required');
-			return;
+		// Create data object
+		const data: {} = {
+			email: email,
+			username: username,
+			password: password,
+		};
+		const authUrl = 'http://localhost:8000/api/auth';
+		const res: Response = await fetch(authUrl, {
+			method: "POST",
+			mode: "cors",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(data)
+		});
+
+		console.log(res.json())
+
 		}
 
-		if (password !== confirmPassword) {
-			console.error('Passwords do not match');
-			return;
-		}
-
-		if (
-			email &&
-			username &&
-			password &&
-			confirmPassword &&
-			password === confirmPassword
-		) {
-			const res = await axios.get('http://localhost:8000/api/auth/register', {
-				params: {
-					email,
-					username,
-					password,
-				},
-			});
-
-			// Save token to local storage
-			try {
-				localStorage.setItem('token', res.data.token);
-			} catch (err) {
-				console.error('Error saving token to local storage', err);
-			}
-		}
-	};
 
 	return (
 		<Main cls='signup'>
 			<form
 				id='auth-form'
 				className='form'
+				onSubmit={handleSubmit}
+
 			>
 				<h1>New user</h1>
 				<div className='form__row'>
@@ -126,7 +112,7 @@ const Signup: React.FC = () => {
 			</form>
 			<Link to='/login'>Already have an account? Login here!</Link>
 		</Main>
-	);
+	)
 };
 
 export default Signup;
