@@ -5,7 +5,6 @@ const usersRoutes = require('./routes/usersRoutes');
 const targetsRoutes = require('./routes/targetsRoutes');
 const challengesRoutes = require('./routes/challengesRoutes');
 const authRoutes = require('./routes/authRoutes');
-const dashboardRoutes = require('./routes/dashboardRoutes');
 const auth = require('./middlewares/auth');
 const dotenv = require('dotenv');
 const app = express();
