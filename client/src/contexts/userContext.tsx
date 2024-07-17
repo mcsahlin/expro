@@ -1,42 +1,42 @@
-import React, { createContext } from 'react';
-import { IUser } from '../ts/models/IUser.ts';
+import {createContext, useContext, useState} from 'react';
 
-/* Interface */
-export interface IUserContext {
-	user: IUser | null;
-	setUser: React.Dispatch<React.SetStateAction<IUser | null>>;
+type UserContextType = {
+	authenticated: boolean;
+	token: string;
+};
+
+const UserContext = createContext<UserContextType | null>(null);
+
+interface IUserProvider {
+	authenticated: boolean;
+	token: string;
+	login: (token: string) => void;
+	logout: () => void;
+	children: React.ReactNode;
 }
+export const UserProvider: React.FC<IUserProvider> = ({ children }) => {
+	const [authenticated, setAuthenticated] = useState(false);
+	const [token, setToken] = useState('');
 
-/* Context */
-export const UserContext = createContext<IUserContext>({
-	user: null,
-	setUser: () => {},
-});
-
-/* Provider */
-export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
-	children,
-}) => {
-	/* Default User Object */
-	const defaultUser: IUser = {
-		_id: '',
-		email: '',
-		password: '',
-		uid: '',
-		role: '',
-		createdAt: new Date,
-		updatedAt: new Date,
+	const login = (token: string) => {
+		setAuthenticated(true);
+		setToken(token);
 	};
-	const [user, setUser] = React.useState<IUser | null>(defaultUser);
 
-	/* Memoized Value to avoid re-rendering */
-	const value = React.useMemo(
-		() => ({
-			user,
-			setUser,
-		}),
-		[user]
-	);
+	const logout = () => {
+		setAuthenticated(false);
+		setToken('');
+	};
+
+	const value = { authenticated, token, login, logout };
 
 	return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
+const useAuthContext = () => {
+	const authContext = useContext(UserContext);
+	if (!authContext) {
+		throw new Error("useAuthContext must be used within the provider");
+	}
+	return useAuthContext;
+};
+
