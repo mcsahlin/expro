@@ -2,17 +2,15 @@ import React from 'react';
 import { Outlet } from 'react-router';
 import { Footer, Navbar } from './modules/layout';
 import './App.css';
+import { AuthProvider } from './core/contexts/authContext';
 
 const App: React.FC = () => {
-	const [loading, setLoading] = React.useState<
-
 	return (
-
-		<>
+		<AuthProvider>
 			<Navbar />
 			<Outlet />
 			<Footer />
-		</>
+		</AuthProvider>
 	);
 };
 

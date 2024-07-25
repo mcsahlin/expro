@@ -7,7 +7,7 @@ import React, {
 import axios from 'axios';
 
 // Define the AuthState interface
-interface AuthState {
+interface IAuthState {
 	// Define properties for the AuthState interface
 	token: string | null;
 	isAuthenticated: boolean;
@@ -17,7 +17,7 @@ interface AuthState {
 }
 
 // Define the AuthContextProps interface
-interface AuthContextProps extends AuthState {
+interface IAuthContext extends IAuthState {
 	// Define methods for the AuthContextProps interface
 	login: (data: any) => void;
 	register: (data: any) => void;
@@ -27,25 +27,25 @@ interface AuthContextProps extends AuthState {
 }
 
 // Define interface for register form
-interface RegisterFormData {
+interface ISignupData {
 	email: string;
 	password: string;
 }
 
 // Define interface for login form
-interface LoginFormData {
+interface ILoginData {
 	email: string;
 	password: string;
 }
 
 // Create a context for the AuthContextProps interface
-const AuthContext = createContext<AuthContextProps | undefined>(undefined);
+const AuthContext = createContext<IAuthContext | undefined>(undefined);
 
 // Define the API_URL constant
-const { API_URL } = process.env as { API_URL: string };
+const API_URL = 'http://localhost:8000/api';
 
 // Define the initialState of the AuthState interface
-const initialState: AuthState = {
+const initialState: IAuthState = {
 	token: localStorage.getItem('token'),
 	isAuthenticated: false,
 	loading: true,
@@ -65,7 +65,7 @@ type AuthAction =
 	| { type: 'REGISTER_FAIL'; payload: string };
 
 // Define the authReducer function
-const authReducer: React.Reducer<AuthState, AuthAction> = (state, action) => {
+const authReducer: React.Reducer<IAuthState, AuthAction> = (state, action) => {
 	switch (action.type) {
 		case 'USER_LOADED':
 			return {
@@ -103,8 +103,14 @@ const authReducer: React.Reducer<AuthState, AuthAction> = (state, action) => {
 	}
 };
 
+interface IAuthProvider {
+	children: ReactNode;
+}
+
 // Define the AuthProvider component
-export const AuthProvider = ({ children }: PropsWithChildren<ReactNode>) => {
+export const AuthProvider = ({
+	children,
+}: PropsWithChildren<IAuthProvider>) => {
 	const [state, dispatch] = useReducer(authReducer, initialState);
 
 	// Define user-loading function
@@ -124,19 +130,21 @@ export const AuthProvider = ({ children }: PropsWithChildren<ReactNode>) => {
 	};
 
 	// Define the register function
-	const register = async (formData: RegisterFormData) => {
+	const register = async (formData: ISignupData) => {
 		try {
-			// Try to register the user
-			const res = await axios.post('/api/users/register', formData);
+			const res = await axios.post(':8000/api/auth', formData, {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			});
 			dispatch({ type: 'REGISTER_SUCCESS', payload: res.data });
 			loadUser();
 		} catch (err: any) {
-			// Handle any errors
 			dispatch({ type: 'REGISTER_FAIL', payload: err.response.data.msg });
 		}
 	};
 
-	const login = async (formData: LoginFormData) => {
+	const login = async (formData: ILoginData) => {
 		try {
 			// Try to login the user
 			const res = await axios.post('/api/users/login', formData);

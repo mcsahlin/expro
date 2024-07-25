@@ -18,8 +18,6 @@ import {
 	Notifications,
 	NotFound,
 } from './modules';
-import {useContext} from "react";
-import {AuthContext} from "./contexts/authContext.tsx";
 
 export const router = createBrowserRouter([
 	{
@@ -29,7 +27,7 @@ export const router = createBrowserRouter([
 		children: [
 			{
 				path: '/',
-				element: <Dashboard />,
+				element: <Home />,
 				index: true,
 			},
 			{
