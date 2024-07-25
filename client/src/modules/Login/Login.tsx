@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Login.scss';
-import { Main } from '../../layout';
-import authService from '../../../ts/services/authService';
+import { Main } from '../layout';
+import authService from '../../ts/services/authService';
 
 const Login: React.FC = () => {
 	const [email, setEmail] = useState('');
@@ -30,9 +30,13 @@ const Login: React.FC = () => {
 
 	return (
 		<Main cls='login'>
-			<form className="form" id="loginForm" onSubmit={handleSubmit}>
+			<form
+				className='form'
+				id='loginForm'
+				onSubmit={handleSubmit}
+			>
 				<h1>Login</h1>
-				<div className="form__row">
+				<div className='form__row'>
 					<label htmlFor='email'>Email</label>
 					<input
 						className='form__field'
@@ -43,10 +47,10 @@ const Login: React.FC = () => {
 						onChange={handleChange}
 					/>
 				</div>
-				<div className="form__row">
+				<div className='form__row'>
 					<label htmlFor='password'>Password</label>
 					<input
-						className="form__field form__field--pw"
+						className='form__field form__field--pw'
 						type='password'
 						id='password'
 						name='password'
@@ -54,8 +58,18 @@ const Login: React.FC = () => {
 						onChange={handleChange}
 					/>
 				</div>
-				<button className="form__submit" type='submit'>Login</button>
-				<Link to='/signup' className="form__link">Create an account</Link>
+				<button
+					className='form__submit'
+					type='submit'
+				>
+					Login
+				</button>
+				<Link
+					to='/signup'
+					className='form__link'
+				>
+					Create an account
+				</Link>
 			</form>
 		</Main>
 	);

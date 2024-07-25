@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import './Footer.scss';
 
 const Footer: React.FC = () => {
+
+
 	return (
 		<footer
 			id='footer'

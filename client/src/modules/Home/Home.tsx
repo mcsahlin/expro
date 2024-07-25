@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.scss';
-import { Button } from '../../common';
+import { Button } from '../common';
 
 const Home: React.FC = () => {
 	return (
